@@ -18,23 +18,28 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
-		<section class="d-flex justify-content-center pt-5">
+		<form id="loginForm">
 		
-			<div id="login">
+			<section class="d-flex justify-content-center pt-5">
 			
-			<h1 class="d-flex justify-content-center"> 로그인 </h1>
+				<div class="col-4 py-5">
+				
+					<h1 class="d-flex justify-content-center"> 로그인 </h1>
+					
+					<input type="text" class="form-control mt-5" id="idInput" placeholder="아이디"/>
+					<input type="password" class="form-control mt-4" id="pwInput" placeholder="****"/>
+					
+					<button type="submit" id="loginBtn" class="btn btn-secondary form-control mt-4"> 로그인 </button>
+					
+					<div class="text-center mt-4">
+						<a href="/user/signup/view" target="_blank"> 회원가입 </a>
+					</div>
+				
+				</div>
+				
+			</section>
 			
-			<input type="text" class="form-control mt-5" id="idInput" name="loginId" placeholder="아이디"/>
-			<input type="password" class="form-control mt-4" id="pwInput" name="password" placeholder="****"/>
-			
-			<button type="button" id="loginBtn" class="btn btn-secondary form-control mt-4"> 로그인 </button>
-			<div class="text-center mt-4">
-			<a href="/user/signup/view" target="_blank"> 회원가입 </a>
-			</div>
-			
-			</div>
-			
-		</section>
+		</form>
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
@@ -42,36 +47,39 @@
 	<script>
 		$(document).ready(function() {
 			
-			$("#loginBtn").on("click", function(){
+			$("#loginForm").on("submit", function(e) {
 				
-				let id = $("#idInput").val();
-				let pw = $("#pwInput").val();
+				// 해당하는 이벤트에 포함된 모든 기능을 중단한다!!!
+				e.preventDefault();
 				
-				if(id == "") {
+				let loginId = $("#idInput").val();
+				let password = $("#pwInput").val();
+				
+				if(loginId == "") {
 					alert("아이디를 입력하세요.");
 					return;
 				}
 			
-				if(pw == "") {
+				if(password == "") {
 					alert("비밀번호를 입력하세요.");
 					return;
 				}
 				
+				// 로그인 api를 호출해서 로그인 결과를 확인한다.
 				$.ajax({
 					type:"post",
 					url:"/user/signin",
-					data:{"loginId":id, "password":pw},
+					data:{"loginId":loginId, "password":password},
 					
 					success:function(data){
 						if(data.result == "success") {
-							alert("로그인 성공");
-							
+							location.href="/post/list/view";
 						} else {
-							alert("로그인 실패 ㅠㅠ");
+							alert("아이디 / 비밀번호를 확인해주세요.");
 						}
 					},
 					error:function(){
-						alert("에러 발생!!");
+						alert("로그인 에러 발생!!");
 					}
 				});
 					

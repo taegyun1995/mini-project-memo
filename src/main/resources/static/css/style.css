@@ -15,10 +15,6 @@ section {
 	height : 600px;
 }
 
-section > #login {
-	width : 400px;
-}
-
 footer {
 	height : 100px;
 	background-color:gray;

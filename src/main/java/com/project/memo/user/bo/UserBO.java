@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.memo.common.EncryptUtils;
 import com.project.memo.user.dao.UserDAO;
+import com.project.memo.user.model.User;
 
 @Service
 public class UserBO {
@@ -19,9 +20,14 @@ public class UserBO {
 		return userDAO.insertUser(loginId, encryptPassword, name, email);
 	}
 	
-	public int loginuser(String loginId, String password) {
+	
+	// 아이디와 패스워드 전달받고 일치하는 데이터 있는지 확인
+	public User getUser(String loginId, String password) {
 		
-		return userDAO.selectuser(loginId, password);
+		String encryptPassword = EncryptUtils.md5(password);
+		
+		return userDAO.selectUser(loginId, encryptPassword);
+		
 	}
 
 }

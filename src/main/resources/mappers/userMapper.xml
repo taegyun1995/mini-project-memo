@@ -15,6 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			, `password`
  			, `name`
  			, `email`
+ 			, `createdAt`
+ 			, `updatedAt`
  		
  		)
  		VALUES
@@ -23,10 +25,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			, #{password}
  			, #{name}
  			, #{email}
+ 			, now()
+ 			, now()
  		)
  	</insert>
  
- 	<select id="selectuser" resultType="int">
+ 	<select id="selectUser" resultType="com.project.memo.user.model.User" parameterType="map">
  		SELECT
  			`id`
  			, `loginId`
