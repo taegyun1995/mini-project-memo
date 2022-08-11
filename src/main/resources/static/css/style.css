@@ -8,14 +8,11 @@
 
 header {
 	height : 100px;
-	background-color:gray;
+	background-color:rgb(186, 186, 186);
 }
 
-section {
-	height : 600px;
-}
 
 footer {
 	height : 100px;
-	background-color:gray;
+	background-color: rgb(186, 186, 186);
 }

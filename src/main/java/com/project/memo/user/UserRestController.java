@@ -69,6 +69,4 @@ public class UserRestController {
 		return map;
 	}
 	
-	// 로그아웃 api
-	
 }

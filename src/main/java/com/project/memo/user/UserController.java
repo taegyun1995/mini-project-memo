@@ -23,19 +23,16 @@ public class UserController {
 		return "user/signin";
 	}
 	
+	// 로그아웃
 	@GetMapping("/user/sign/out")
 	public String signOut(HttpServletRequest request) {
-		// 로그아웃
-		// 로그인시에 저장한 세션의 값들을 모두 제거한다.
 		
 		HttpSession session = request.getSession();
 		
-		// userId, userLoginId userName
 		session.removeAttribute("userId");
 		session.removeAttribute("userLoginId");
 		session.removeAttribute("userName");
 		
-		// 리다이렉트
 		return "redirect:/user/signin/view";
 	}
 

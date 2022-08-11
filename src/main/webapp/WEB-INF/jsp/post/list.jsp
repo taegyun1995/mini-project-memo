@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +19,37 @@
 	<div id="wrap">
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
-		<section>
+		<section class="d-flex justify-content-center">
 		
+			<div class="col-8 my-4">
+				<h2 class="text-center"> 메모 리스트 </h2>
+				
+				<table class="table text-center">
+				
+					<thead>
+						<tr>
+							<th> No. </th>
+							<th> 제목 </th>
+							<th> 시간 </th>
+						</tr>
+					</thead>
+					
+					<tbody class="py-1">
+					<c:forEach var="memo" items="${memoList}" varStatus="status">
+						<tr>	
+							<td> ${status.count } </td>
+							<td> ${memo.subject} </td>
+							<td> <fmt:formatDate value="${memo.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /> </td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				
+				</table>
+				
+				<div class="text-right">
+					<a href="/post/create/view" class="btn btn-info"> 글쓰기 </a>			
+				</div>
+			</div>
 		
 		</section>
 		

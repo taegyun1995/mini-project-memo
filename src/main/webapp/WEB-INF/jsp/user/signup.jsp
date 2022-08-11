@@ -19,11 +19,11 @@
 	
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
-		<section class="d-flex justify-content-center pt-5">
+		<section class="d-flex justify-content-center">
 		
 			<div id="login">
 			
-			<h1 class="d-flex justify-content-center"> 회원가입 </h1>
+			<h1 class="d-flex justify-content-center my-5"> 회원가입 </h1>
 			
 			<input type="text" class="form-control mt-5" id="idInput" placeholder="아이디"/>
 			<input type="password" class="form-control mt-4" id="pwInput" placeholder="****"/>
@@ -31,7 +31,7 @@
 			<input type="text" class="form-control mt-4" id="nameInput" placeholder="이름"/>
 			<input type="text" class="form-control mt-4" id="emailInput" placeholder="이메일 주소"/>
 			
-			<button type="button" id="joinBtn" class="btn btn-secondary form-control mt-4"> 가입 </button>
+			<button type="button" id="joinBtn" class="btn btn-secondary form-control my-4"> 가입 </button>
 			
 			</div>
 			
