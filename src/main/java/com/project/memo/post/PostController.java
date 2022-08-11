@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.memo.post.bo.PostBO;
 import com.project.memo.post.model.Post;
@@ -39,6 +40,17 @@ public class PostController {
 	public String postCreate() {
 		
 		return "post/create";
+	}
+	
+	// 메모 세부 페이지
+	// post의 id를 전달받고 해당하는 메모를 조회하여 model에 추가
+	@GetMapping("/post/detail/view")
+	public String postDetail(@RequestParam("id") int id, Model model) {
+		
+		Post post = postBO.getPost(id);
+		model.addAttribute("memo", post);
+		
+		return "post/detail";
 	}
 	
 }

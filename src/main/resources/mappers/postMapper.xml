@@ -41,6 +41,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`userId` = #{userId}
 		ORDER BY `createdAt` DESC
 	</select>
+	
+	<select id="selectPost" resultType="com.project.memo.post.model.Post" parameterType="int">
+		SELECT
+			`id`
+			,`userId`
+			, `subject`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`post`
+		WHERE
+			`id` = #{id}
+	</select>
 
 
 </mapper>
