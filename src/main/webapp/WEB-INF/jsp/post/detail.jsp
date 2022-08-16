@@ -22,11 +22,18 @@
 		
 			<div class="col-6 my-5">
 				<h1 class="text-center"> 메모 입력 </h1>
+				
 				<div class="d-flex justify-content-between mt-2">
 					<label> 제목 : </label>
 					<input type="text" class="form-control col-11" id="titleInput" value="${memo.subject }"/>
 				</div>
+				
 				<textarea rows="10" class="form-control mt-2" id="contentInput"> ${memo.content} </textarea>
+				
+				<div class="py-2">
+					<img class="w-100" src="${memo.imagePath }" />
+				</div>
+				
 				<div class="d-flex justify-content-between mt-3">
 					<div>
 						<a href="/post/list/view" class="btn btn-info"> 목록으로 </a>

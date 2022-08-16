@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			`userId`
 			, `subject`
 			, `content`
+			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
 		)
@@ -21,6 +22,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{userId}
 			, #{title}
 			, #{content}
+			, #{imagePath}
 			, now()
 			, now()
 		)
@@ -33,6 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,`userId`
 			, `subject`
 			, `content`
+			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
 		FROM
@@ -48,6 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			,`userId`
 			, `subject`
 			, `content`
+			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
 		FROM

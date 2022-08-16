@@ -42,7 +42,7 @@ public class PostController {
 		return "post/create";
 	}
 	
-	// 메모 세부 페이지
+	// 메모 세부 페이지 (프로필)
 	// post의 id를 전달받고 해당하는 메모를 조회하여 model에 추가
 	@GetMapping("/post/detail/view")
 	public String postDetail(@RequestParam("id") int id, Model model) {

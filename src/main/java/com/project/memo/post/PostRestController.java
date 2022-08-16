@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.memo.post.bo.PostBO;
 
@@ -24,13 +25,14 @@ public class PostRestController {
 	public Map<String, String> memoCreate(
 			@RequestParam("title") String title
 			, @RequestParam("content") String content
+			, @RequestParam(value="file", required=false) MultipartFile file
 			, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		
 		int userId = (Integer)session.getAttribute("userId");
 		
-		int count = postBO.addPost(userId, title, content);
+		int count = postBO.addPost(userId, title, content, file);
 		
 		Map<String, String> map = new HashMap<>();
 		if(count == 1) {
@@ -41,7 +43,5 @@ public class PostRestController {
 		
 		return map;
 	}
-	
-	
 	
 }
