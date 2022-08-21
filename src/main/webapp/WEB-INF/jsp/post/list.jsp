@@ -39,7 +39,7 @@
 						<tr>	
 							<td> ${status.count } </td>
 							<td> <a href="/post/detail/view?id=${memo.id}"> ${memo.subject} </a> </td>
-							<td> <fmt:formatDate value="${memo.createdAt}" pattern="yyyy-MM-dd HH:mm:ss" /> </td>
+							<td> <fmt:formatDate value="${memo.updatedAt}" pattern="yyyy-MM-dd HH:mm:ss" /> </td>
 						</tr>
 					</c:forEach>
 					</tbody>

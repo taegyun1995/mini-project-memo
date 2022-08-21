@@ -20,7 +20,7 @@
 		
 		<section class="d-flex justify-content-center">
 		
-			<div class="col-6 my-5">
+			<div class="col-7 my-5">
 				<h1 class="text-center"> 메모 입력 </h1>
 				
 				<div class="d-flex justify-content-between mt-2">
@@ -34,12 +34,12 @@
 					<img class="w-100" src="${memo.imagePath }" />
 				</div>
 				
-				<div class="d-flex justify-content-between mt-3">
+				<div class="d-flex justify-content-between mt-2">
 					<div>
 						<a href="/post/list/view" class="btn btn-info"> 목록으로 </a>
-						<button type="button" class="btn btn-danger"> 삭제 </button>
+						<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${memo.id }"> 삭제 </button>
 					</div>
-					<button type="button" class="btn btn-info" id="saveBtn"> 수정 </button>
+					<button type="button" class="btn btn-info" id="updateBtn" data-post-id="${memo.id }"> 수정 </button>
 				</div>
 			</div>
 			
@@ -51,9 +51,10 @@
 	<script>
 		$(document).ready(function(){
 			
-			$("#saveBtn").on("click", function() {
+			$("#updateBtn").on("click", function() {
 				let title = $("#titleInput").val();
 				let content = $("#contentInput").val().trim();
+				let postId = $(this).data("post-id");
 				
 				if(title == "") {
 					alert("제목을 입력해주세요.");
@@ -65,14 +66,13 @@
 					return;
 				}
 				
-				// 메모 API 호출
 				$.ajax({
 					type:"post",
-					url:"/post/create",
-					data:{"title":title, "content":content},
+					url:"/post/update",
+					data:{"postId":postId, "title":title, "content":content},
 					success:function(data) {
 						if(data.result == "success") {
-							location.href="/post/list/view";
+							location.reload();
 						} else {
 							alert("메모 작성 실패");
 						}
@@ -81,6 +81,28 @@
 						alert("에러 발생!!");
 					}
 					
+				});
+				
+			});
+			
+			$("#deleteBtn").on("click", function(){
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/delete",
+					data:{"postId":postId},
+					
+					success:function(data) {
+						if(data.result == "success") {
+							location.href="/post/list/view";
+						} else {
+							alert("삭제 실패");
+						}
+					},
+					error:function() {
+						alert("삭제 에러 발생");
+					}
 				});
 				
 			});
